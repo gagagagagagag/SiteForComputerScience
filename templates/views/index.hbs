@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="css/font-icons.css" type="text/css" />
     <link rel="stylesheet" href="css/animate.css" type="text/css" />
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-    <link rel="icon" href="images/minilogo2.png" type="image/x-icon" />
+    <link href="css/toastr.css" rel="stylesheet"/>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 
     <link rel="stylesheet" href="css/responsive.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -117,7 +118,7 @@
                                         <div class="card-body">
                                             <i class="icon-code h1"></i>
                                             <h3 class="card-title">Programming III</h3>
-                                            <p class="card-text t400">Brodka chuj</p>
+                                            <p class="card-text t400" id="boratQuote">You telling me that the man who try to put a rubber fist in my anus was a homosexual?</p>
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +140,7 @@
                                         <div class="card-body">
                                             <i class="icon-laptop-code h1"></i>
                                             <h3 class="card-title">Operating Systems I</h3>
-                                            <p class="card-text t400">You'll fail anyway, don't waste ur time.</p>
+                                            <p class="card-text t400" id="aligQuote">You'll fail anyway, don't waste ur time.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -160,14 +161,15 @@
                                         <div class="card-body">
                                             <i class="icon-line-share h1"></i>
                                             <h3 class="card-title">Data transmission</h3>
-                                            <p class="card-text t400">I'm not superstitious but I'm a little stitious.</p>
+                                            <p class="card-text t400" id="michaelQuote">I'm not superstitious but I'm a little stitious.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="flip-card-back" data-height-xl="505" style="background-image: url('images/michael_back.png');">
                                 <div class="flip-card-inner">
-                                    <p class="mb-2 text-white">Login: dp<br>Password: student2020</p>
+                                    <p class="mb-2 text-white">Login: dp<i style="cursor: pointer; float: right" class="icon-clipboard1" data-toggle="tooltip" data-placement="right" title="Copy to clipboard" onclick="copyTextToClipboard('dp', true)"></i><br>
+                                        Password: student2020<i style="cursor: pointer; float: right" class="icon-clipboard1" data-toggle="tooltip" data-placement="right" title="Copy to clipboard" onclick="copyTextToClipboard('student2020')"></i></p>
                                     <a href="http://mini.pw.edu.pl/~marcinp/td.htm" target="_blank"><button type="button" class="btn btn-outline-light mt-2">Go to website</button></a>
                                 </div>
                             </div>
@@ -185,7 +187,7 @@
                                         <div class="card-body">
                                             <i class="icon-subscript1 h1"></i>
                                             <h3 class="card-title">Differential Equations</h3>
-                                            <p class="card-text t400">Jeremiah K.</p>
+                                            <p class="card-text t400" id="ginaQuote">Jeremiah K.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -200,18 +202,18 @@
 
                     <div class="col-lg-4 mb-4">
                         <div class="flip-card text-center">
-                            <div class="flip-card-front dark" data-height-xl="505" style="background-image: url('images/alan.jpg');">
+                            <div class="flip-card-front dark" data-height-xl="505" style="background-image: url('images/ron.jpg');">
                                 <div class="flip-card-inner">
                                     <div class="card nobg noborder text-center">
                                         <div class="card-body">
                                             <i class="icon-graph h1"></i>
                                             <h3 class="card-title">Algorythms and Data Structures</h3>
-                                            <p class="card-text t400">:^)</p>
+                                            <p class="card-text t400" id="ronQuote">:^)</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flip-card-back" data-height-xl="505" style="background-image: url('images/alan_back.jpg');">
+                            <div class="flip-card-back" data-height-xl="505" style="background-image: url('images/ron_back.png');">
                                 <div class="flip-card-inner">
                                     <a href="http://mini.pw.edu.pl/~brys/www/?Strona_g%B3%F3wna:Informacje%2C_materia%B3y_i_og%B3oszenia_dla_student%F3w:Algorithms_and_Data_Structures" target="_blank"><button type="button" class="btn btn-outline-light mt-2">Go to website</button></a>
                                 </div>
@@ -221,18 +223,18 @@
 
                     <div class="col-lg-4 mb-4">
                         <div class="flip-card text-center">
-                            <div class="flip-card-front dark" data-height-xl="505" style="background-image: url('images/lonc.png');">
+                            <div class="flip-card-front dark" data-height-xl="505" style="background-image: url('images/dwight.jpeg');">
                                 <div class="flip-card-inner">
                                     <div class="card nobg noborder text-center">
                                         <div class="card-body">
                                             <i class="icon-line2-graph h1"></i>
                                             <h3 class="card-title">Descrete Mathematics II</h3>
-                                            <p class="card-text t400">:^)</p>
+                                            <p class="card-text t400" id="dwightQuote">:^)</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flip-card-back" data-height-xl="505" style="background-image: url('images/lonc_back.png');">
+                            <div class="flip-card-back" data-height-xl="505" style="background-image: url('images/dwight_back.jpg');">
                                 <div class="flip-card-inner">
                                     <a href="https://pages.mini.pw.edu.pl/~loncz/www/?Strona_g%C5%82%C3%B3wna:Przedmioty_%28Courses%29:Discrete_Mathematics_II" target="_blank"><button type="button" class="btn btn-outline-light mt-2">Go to website</button></a>
                                 </div>
@@ -295,6 +297,9 @@
 
 </div><!-- #wrapper end -->
 
+
+<!-- Modals
+============================================= -->
 <div class="modal fade bs-example-modal-sm show" id="password-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="display: none;" aria-modal="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-body">
@@ -304,18 +309,23 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <p class="nobottommargin">Login: s3-p3a</p>
-                    <p>Lab1 password:</p>
-                    <p>Lab2 password:</p>
-                    <p>Lab3 password:</p>
-                    <p>Lab4 password:</p>
-                    <p>Lab5 password:</p>
-                    <p>Lab6 password:</p>
+                    <ul class="iconlist" id="passwordList">
+                        <li><i class="icon-user2 mb-5"></i><strong>Login:</strong> s3-p3a<i style="cursor: pointer; float: right" class="icon-clipboard1" data-toggle="tooltip" data-placement="right" title="Copy to clipboard" onclick="copyTextToClipboard('s3-p3a', true)"></i></li>
+                        <li class="spost clearfix"></li>
+                        <li><i class="icon-key"></i><strong>Presentation:</strong> mini-ga12<i style="cursor: pointer; float: right" class="icon-clipboard1" data-toggle="tooltip" data-placement="right" title="Copy to clipboard" onclick="copyTextToClipboard('mini-ga12')"></i></li>
+
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Templates
+============================================= -->
+<script id="password-template" type="text/x-handlebars-template">
+    <li><i class="icon-key"></i><strong>Lab{{labNumber}}:</strong> {{labPassword}}<i style="cursor: pointer; float: right" class="icon-clipboard1 {{passwordPresent}}" data-toggle="tooltip" data-placement="right" title="Copy to clipboard" onclick="copyTextToClipboard('{{labPassword}}')"></i></li>
+</script>
 
 <!-- Go To Top
 ============================================= -->
@@ -325,6 +335,9 @@
 ============================================= -->
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>
+<script src="js/toastr.js"></script>
+<script src="js/hbs.js"></script>
+<script src="js/custom/index.js"></script>
 
 <!-- Footer Scripts
 ============================================= -->

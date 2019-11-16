@@ -18,7 +18,11 @@ hbs.registerPartials(partialsPath);
 app.use(express.static(publicDirPath));
 
 app.get("/", (req, res) => {
-   res.render("index");
+   res.render("index", {
+       labNumber: "{{labNumber}}",
+       labPassword: "{{labPassword}}",
+       passwordPresent: "{{passwordPresent}}"
+   });
 });
 
 app.get("/*", (req, res) => {
