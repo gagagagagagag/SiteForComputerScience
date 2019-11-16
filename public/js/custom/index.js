@@ -68,5 +68,25 @@ const showQuotes = () => {
     $("#dwightQuote").text(dwightQuotes[Math.floor(Math.random() * dwightQuotes.length)]);
 };
 
+const moveTo = where => {
+    if (where === "top") {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    } else if (where === "sem3") {
+        document.getElementById("semesterIII").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    } else if (where === "sem2") {
+        document.getElementById("semesterII").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+};
+
 showQuotes();
 showPasswords();
