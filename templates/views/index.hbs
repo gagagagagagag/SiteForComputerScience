@@ -125,7 +125,7 @@
                             </div>
                             <div class="flip-card-back" data-height-xl="505" style="background-image: url('images/borat_back.jpg');">
                                 <div class="flip-card-inner">
-                                    <button type="button" class="btn btn-outline-light mt-2" data-toggle="modal" data-target="#password-modal">View Passwords</button>
+                                    <button type="button" class="btn btn-outline-light mt-2" data-toggle="modal" data-target="#password-modal">View Passwords and Downloads</button>
                                     <a href="http://www.mini.pw.edu.pl/~brodka/P3A.html" target="_blank"><button type="button" class="btn btn-outline-light mt-2">Go to website</button></a>
                                 </div>
                             </div>
@@ -305,14 +305,15 @@
         <div class="modal-body">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Programming passwords</h4>
+                    <h4 class="modal-title" id="myModalLabel">Programming passwords and downloads</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <ul class="iconlist" id="passwordList">
+                    <ul class="iconlist" id="downloadList">
                         <li><i class="icon-user2 mb-5"></i><strong>Login:</strong> s3-p3a<i style="cursor: pointer; float: right" class="icon-clipboard1" data-toggle="tooltip" data-placement="right" title="Copy to clipboard" onclick="copyTextToClipboard('s3-p3a', true)"></i></li>
-                        <li class="spost clearfix"></li>
                         <li><i class="icon-key"></i><strong>Presentation:</strong> mini-ga12<i style="cursor: pointer; float: right" class="icon-clipboard1" data-toggle="tooltip" data-placement="right" title="Copy to clipboard" onclick="copyTextToClipboard('mini-ga12')"></i></li>
+                        <li class="spost clearfix"></li>
+
 
                     </ul>
                 </div>
@@ -324,7 +325,7 @@
 <!-- Templates
 ============================================= -->
 <script id="password-template" type="text/x-handlebars-template">
-    <li><i class="icon-key"></i><strong>Lab{{labNumber}}:</strong> {{labPassword}}<i style="cursor: pointer; float: right" class="icon-clipboard1 {{passwordPresent}}" data-toggle="tooltip" data-placement="right" title="Copy to clipboard" onclick="copyTextToClipboard('{{labPassword}}')"></i></li>
+    <li><i class="icon-line-download"></i><strong class="mr-1">{{fileName}}:</strong> <a href="/download/programming/{{fileName}}">Download</a></li>
 </script>
 
 <!-- Go To Top

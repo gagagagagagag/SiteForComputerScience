@@ -2,6 +2,7 @@ const express = require("express");
 const chalk = require("chalk");
 const path = require("path");
 const hbs = require("hbs");
+const fs = require("fs");
 
 const publicDirPath = path.join(__dirname, "../public");
 const viewsPath = path.join(__dirname, "../templates/views");
@@ -19,10 +20,56 @@ app.use(express.static(publicDirPath));
 
 app.get("/", (req, res) => {
    res.render("index", {
-       labNumber: "{{labNumber}}",
-       labPassword: "{{labPassword}}",
-       passwordPresent: "{{passwordPresent}}"
+       fileName: "{{fileName}}"
    });
+});
+
+app.get("/download/programming/count", async (req, res) => {
+    try {
+        const items = await new Promise((resolve, reject) => {
+            fs.readdir(path.join(__dirname, "../downloadFiles/programming"), (err, items) => {
+                if (err) {
+                    reject();
+                }
+
+                resolve(items);
+            });
+        });
+
+        const itemsWithoutExtensions = items.map(item => item.split(".")[0]);
+
+        res.send(itemsWithoutExtensions);
+    } catch (e) {
+        res.status(500).send();
+    }
+});
+
+
+
+app.get("/download/programming/*", async (req, res) => {
+    try {
+        const labName = req._parsedOriginalUrl.path.split("/")[3];
+
+        const items = await new Promise((resolve, reject) => {
+            fs.readdir(path.join(__dirname, "../downloadFiles/programming"), (err, items) => {
+                if (err) {
+                    reject();
+                }
+
+                resolve(items);
+            });
+        });
+
+        const filteredItems = items.filter(item => item.split(".")[0] === labName);
+
+        if (filteredItems.length !== 1) {
+            return res.status(404).send("The file you are looking for was not found.");
+        }
+
+        res.download(path.join(__dirname, "../downloadFiles/programming", filteredItems[0]));
+    } catch (e) {
+        res.status(500).send();
+    }
 });
 
 app.get("/*", (req, res) => {

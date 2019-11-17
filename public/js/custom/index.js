@@ -1,9 +1,9 @@
 // Templates
-const passwordTemplateHTML = $("#password-template").html();
-const passwordTemplate = Handlebars.compile(passwordTemplateHTML);
+const downloadTemplateHTML = $("#password-template").html();
+const downloadTemplate = Handlebars.compile(downloadTemplateHTML);
 
 // Passwords
-const passwordsForLabs = ["", "", "", "", "", ""];
+let downloadsOfLabsAvilable;
 const boratQuotes = ["You telling me that the man who try to put a rubber fist in my anus was a homosexual?", "He is my neighbor Nursultan Tuliagby. He is pain in my assholes. I get a window from a glass, he must get a window from a glass. I get a step, he must get a step. I get a clock radio, he cannot afford. Great success!", "Can you make me look like this man?", "Please, come and see my film. If it not success, I will be execute.", "They have cleverly shifted their shapes. One of them has taken the form of a little old woman. You can barely see her horns. She has tried to poison me already.", "My wife is dead? …. High five!", "She is my sister. She is number four prostitute in all of Kazakhstan. Nice.", "Who is this lady you have shrunk? Was she the owner of this house that you camp in front of? Do not try and shrink me gypsy, I serious.", "What’s up with it, Vanilla face? Me and my homie Azamat just parked our slab outside. We’re looking for somewhere to post up our black asses for the night.", "Kazakhstan is more civilised now. Women can now travel on inside of bus, and homosexuals no longer have to wear blue hat.", "America national sport is called baseballs. It very similar to our sport, shurik, where we take dogs, shoot them in a field and then have a party.", "In U.S. and A. they treat horses like we in Kazakhstan treat our women. They feed them two times a day. They have them sleep on straw in a small box. And for entertainment, they make them jump over fences while being whipped.", "American wine is like Kazakhstani wine, but not made from fermented horse urine.", "Very sorry to interrupt politic. Might I make a shit in your house?", "Yakshemash! In US of A, democracy is very different from Kazakhstan. In America, woman *can* vote, but horse - *cannot*!", "My wife she is dead...she die in a field...she die from work, an accident, but is not important, I have a new wife.", "Every Englishman must have a hobby. Some like to collect the stamp, some like to make the jam, but the most fun is to a kill a little animal with a shotgun or rip them up with wild dog.", "In Kazakhstan we have many hobbies: disco dancing, archery, rape, and table tennis.", "There are many job opportunities in the US and of A. For men, construction worker, taxi driver or accountant. For woman, prostitute.", "But if she cheat on me, I will crush her!", "My wife, she is scared of men with chocolate face, there won't be any around here?", "I hope you kill every man, woman and child in Iraq, down to the lizards. And may George W. Bush drink the blood of every man, woman and child in Iraq."];
 const aligQuotes = ["Is it ‘cos I is black?", "Boh!", "Big up yourself.", "Booyakasha!", "Is you knocking out a drum and bass sound or is it more speed garage?", "Is you on crack or somethin’?", "So hows bout them WMD’s and them BLT’s.", "Respek.", "So what is the FB… AAAAAYYYY", "This is going to be like 60 Minutes, but just with more sex.", "Sex can lead to nasty things like herpes, gonorrhea, and something called relationships.", "Is Disneyland a part of the UN?", "Can I borrow your underwear?", "This show brings politicalist interviewing into this, the twentieth century.", "Why did Jesus go ’round with all them reindeers?", "With men and women, does you think that men should marry only one woman? Does you believe in mahogany?", "I don’t know if you know this, but dolphins ain’t fish. They is like us, they is mammaries.", "You betta check yo’self before you wreck yo’self.", "Ain’t dat a bit racialist?", "Let’s talk about some conspiracy things. Let’s go back to the grassy knoll. Who actually shot J.R.?", "When you arrived on the moon, was the people who lived there very friendly, or was they scared of you?", "Innit a coincidence dat Jesus was born on Chris’mas day?", "Sex. You has probably heard the word out there. And some of you probably know what it means. For those of you who don’t, it means boning. But with boning comes responsi-lib-ity.", "Why don’t they teach proper maffs in schools? Why teach in kilos and grams when you should deal in ounces, quarters and eighths?", "That’s a very sexist way to talk abou’ dees bitches!", "Africa ain’t just a country that gave us Bob Marley.", "One time when me was high, me sold me car for like 24 chicken McNuggets.", "But what harm has violence ever done?"];
 const michaelQuotes = ["I’m Beyoncé, always.", "It’s Britney, bitch.", "Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.", "Sometimes I’ll start a sentence and I don’t even know where it’s going. I just hope I find it along the way.", "The worst thing about prison was the Dementors. They were flying all over the place and they were scary and they’d come down and they’d suck the soul out of your body and it hurt!", "When the son of the deposed king of Nigeria emails you directly, asking for help, you help! His father ran the freaking country! Okay?", "I have cause. It is beCAUSE I hate him.", "Society teaches us that having feelings and crying is bad and wrong. Well, that’s baloney, because grief isn’t wrong. There’s such a thing as good grief. Just ask Charlie Brown.", "You know what they say. Fool me once, strike one, but fool me twice … strike three.", "Well, well, well, how the turntables.", "I’m not superstitious, but I am a little ‘stitious.", "I love inside jokes. I’d love to be a part of one someday.", "Wikipedia is the best thing ever. Anyone in the world can write anything they want about any subject. So you know you are getting the best possible information.", "I don’t understand. We have a day honoring Martin Luther King, but he didn’t even work here.", "And I knew exactly what to do. But in a much more real sense, I had no idea what to do.", "I understand nothing.", "Well, it’s love at first sight. Actually, it was … No, it was when I heard her voice. It was love at first see with my ears.", "Okay, too many different words from coming at me from too many different sentences.", "It’s a pimple, Phyllis. Avril Lavigne gets them all the time and she rocks harder than anyone alive.", "I would not miss it for the world. But if something else came up I would definitely not go.", "That’s what she said."];
@@ -46,15 +46,21 @@ function copyTextToClipboard(text, login) {
     });
 }
 
-const showPasswords = () => {
-    const passwordList = $("#passwordList");
+const showDownloads = async () => {
+    try {
+        downloadsOfLabsAvilable = await $.ajax({
+            url: "/download/programming/count",
+            method: "GET"
+        });
+    } catch (e) {
+        console.log("Unable to retrieve the downloads.");
+    }
 
-    passwordsForLabs.forEach((password, index) => {
-        console.log(password);
-        $(passwordList).append(passwordTemplate({
-            labNumber: index + 1,
-            labPassword: password,
-            passwordPresent: password === "" ? "d-none" : ""
+    const downloadList = $("#downloadList");
+
+    downloadsOfLabsAvilable.forEach(file => {
+        $(downloadList).append(downloadTemplate({
+            fileName: file
         }));
     });
 };
@@ -89,4 +95,4 @@ const moveTo = where => {
 };
 
 showQuotes();
-showPasswords();
+showDownloads();
