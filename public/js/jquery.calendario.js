@@ -238,8 +238,8 @@
 	_timeHtml : function(day, date){
 	  var content = day.content;
 	  content += '<time class="fc-allday" datetime="' + day.allDay + '"></time>';
-	  content += '<time class="fc-starttime" datetime="' + this._toDateTime(day.startTime, date) + '">' + day.startTime + '</time>';
-	  content += '<time class="fc-endtime" datetime="' + this._toDateTime(day.endTime, date, day.startTime) + '">' + day.endTime + '</time>';
+	  // content += '<time class="fc-starttime" datetime="' + this._toDateTime(day.startTime, date) + '">' + day.startTime + '</time>';
+	  // content += '<time class="fc-endtime" datetime="' + this._toDateTime(day.endTime, date, day.startTime) + '">' + day.endTime + '</time>';
 	  return content;
 	},
 

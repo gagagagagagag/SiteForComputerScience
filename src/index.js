@@ -24,6 +24,16 @@ app.get("/", (req, res) => {
    });
 });
 
+app.get("/calendar", (req, res) => {
+    res.render("calendar", {
+        eventFirst: "{{eventFirst}}",
+        eventName: "{{eventName}}",
+        eventBuilding: "{{eventBuilding}}",
+        eventRoom: "{{eventRoom}}",
+        eventTime: "{{eventTime}}"
+    });
+});
+
 app.get("/download/programming/count", async (req, res) => {
     try {
         const items = await new Promise((resolve, reject) => {
