@@ -27,6 +27,18 @@ let canvasEvents = {};
 // };
 
 const calendarEvents = {
+    "11-29-2019": {
+        html: "<span>DT Test</span>",
+        events: [
+            {
+                name: "DT Test",
+                building: "MiNI",
+                room: "101",
+                timeFrom: "16:15",
+                timeTo: "18:00"
+            }
+        ]
+    },
     "01-20-2020": {
         html: "<span>Calculus Test</span>",
         events: [
@@ -75,7 +87,7 @@ const calendarEvents = {
             }
         ]
     },
-    "11-28-2019": {
+    "12-05-2019": {
         html: "<span>Algorythms and Data Structures Test</span>",
         events: [
             {
